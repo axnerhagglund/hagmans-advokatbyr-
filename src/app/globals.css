@@ -1,26 +1,111 @@
 @import "tailwindcss";
+@import "@fontsource/dm-serif-display/400.css";
+@import "@fontsource/fira-sans/400.css";
+@import "@fontsource/fira-sans/500.css";
+@import "@fontsource/fira-sans/700.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-orange: #ff5722;
+  --color-yellow: #ffeb3b;
+  --color-ink: #0a0a0a;
+  --color-cream: #fafaf8;
+  --color-muted: #6b6b6b;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .font-display {
+    font-family: "DM Serif Display", Georgia, serif;
+  }
+  .shadow-brutalist {
+    box-shadow: 4px 4px 0 #0a0a0a;
+  }
+  .shadow-brutalist-lg {
+    box-shadow: 6px 6px 0 #0a0a0a;
+  }
+  .shadow-brutalist-xl {
+    box-shadow: 8px 8px 0 #0a0a0a;
+  }
+  .shadow-orange {
+    box-shadow: 5px 5px 0 #ff5722;
+  }
+  .highlight-yellow {
+    background: linear-gradient(to bottom, transparent 55%, rgba(255, 235, 59, 0.7) 55%);
+  }
+  .tape {
+    background: #ffeb3b;
+    display: inline-block;
+    padding: 0 6px 2px;
+    transform: rotate(-0.8deg);
+  }
+  .border-ink {
+    border: 2px solid #0a0a0a;
+  }
+  .border-ink-thick {
+    border: 3px solid #0a0a0a;
   }
 }
 
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Fira Sans", Helvetica, sans-serif;
+  background: #ffffff;
+  color: #0a0a0a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #ffeb3b;
+  color: #0a0a0a;
+}
+
+mark {
+  background: #ffeb3b;
+  color: inherit;
+  padding: 0 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

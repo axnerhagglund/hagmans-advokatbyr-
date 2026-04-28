@@ -1,65 +1,396 @@
-import Image from "next/image";
+import Link from "next/link";
+import BrutalistButton from "@/components/ui/BrutalistButton";
+import BrutalistCard from "@/components/ui/BrutalistCard";
+import SectionHeader from "@/components/ui/SectionHeader";
+import FaqAccordion from "@/components/ui/FaqAccordion";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import { tjanster } from "@/data/tjanster";
+import { medarbetare } from "@/data/medarbetare";
+import { faqItems } from "@/data/faq";
+import { bloggPosts } from "@/data/blogg";
 
-export default function Home() {
+export default function HomePage() {
+  const featuredFaq = faqItems.slice(0, 4);
+  const featuredBlogg = bloggPosts.slice(0, 3);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <>
+      {/* ─── HERO ─── */}
+      <section className="border-b border-[#e5e0d8] bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 py-20 md:py-28 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <span className="inline-block text-xs font-bold tracking-[0.25em] uppercase border-2 border-[#0a0a0a] px-3 py-1.5 mb-8">
+              Familjerättsbyrå · Stockholm
+            </span>
+            <h1 className="font-display text-[clamp(3.5rem,10vw,7rem)] leading-[0.88] text-[#0a0a0a] mb-8">
+              FAMILJE-
+              <br />
+              RÄTT
+              <br />
+              <span className="relative inline-block">
+                <span className="relative z-10">UTAN</span>
+                <span
+                  className="absolute left-0 bottom-1 w-full h-4 bg-[#ffeb3b] -z-[1]"
+                  aria-hidden="true"
+                />
+              </span>
+              <br />
+              KRÅNGEL.
+            </h1>
+            <p className="text-[#6b6b6b] text-xl leading-relaxed mb-10 max-w-lg">
+              Vi är advokaterna du faktiskt vågar ringa när livet kraschar. Rak
+              kommunikation, mänsklig ton, inga dolda kostnader.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <BrutalistButton href="/kontakt" size="lg">
+                Boka kostnadsfritt samtal →
+              </BrutalistButton>
+              <BrutalistButton href="/tjanster" variant="outline" size="lg">
+                Våra tjänster
+              </BrutalistButton>
+            </div>
+            <p className="mt-6 text-sm text-[#6b6b6b]">
+              <span className="font-semibold text-[#0a0a0a]">
+                Första samtalet är alltid gratis.
+              </span>{" "}
+              Inget juridikprat, bara ett vanligt samtal.
+            </p>
+          </div>
+
+          <div className="hidden lg:flex flex-col gap-5">
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { num: "500+", label: "Avslutade ärenden" },
+                { num: "98%",  label: "Nöjda klienter" },
+                { num: "4",    label: "Specialister" },
+                { num: "2015", label: "Grundades" },
+              ].map((s) => (
+                <div key={s.label} className="border border-[#e5e0d8] p-5 bg-[#fafaf8]">
+                  <div className="font-display text-4xl text-[#0a0a0a] leading-none mb-1">{s.num}</div>
+                  <div className="text-xs text-[#767676] uppercase tracking-widest">{s.label}</div>
+                </div>
+              ))}
+            </div>
+            {/* Testimonial */}
+            <div className="border-l-4 border-[#ff5722] bg-white pl-5 py-4 pr-5 border border-[#e5e0d8]">
+              <p className="font-display text-lg leading-snug text-[#0a0a0a] mb-3">
+                &ldquo;Äntligen en advokat som pratade med mig, inte mot mig.&rdquo;
+              </p>
+              <p className="text-xs text-[#767676] font-medium tracking-wide">— Klient, Skilsmässa 2023</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── USP STRIP ─── */}
+      <section className="border-b border-[#e5e0d8] bg-[#fafaf8] py-4">
+        <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-x-8 gap-y-2">
+          {[
+            "Proffsigt",
+            "Ärligt",
+            "Mänskligt",
+            "Första samtalet gratis",
+            "Rättsskydd godkänt",
+            "Transparenta priser",
+          ].map((item, i) => (
+            <span
+              key={i}
+              className="flex items-center gap-3 text-xs font-semibold tracking-[0.15em] uppercase text-[#6b6b6b]"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              {i > 0 && <span className="text-[#d4cfc7]">·</span>}
+              {item}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* ─── TJÄNSTER – editorial row list ─── */}
+      <section className="py-20 md:py-24 border-b border-[#e5e0d8]">
+        <div className="max-w-7xl mx-auto px-6">
+          <ScrollReveal className="flex items-end justify-between mb-10 flex-wrap gap-4">
+            <div>
+              <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-[#ff5722] border border-[#ff5722] px-3 py-1 mb-4">
+                Vad vi gör
+              </span>
+              <h2 className="font-display text-4xl md:text-5xl leading-tight">
+                Familjerätt utan förbehåll
+              </h2>
+            </div>
+            <BrutalistButton href="/tjanster" variant="outline" size="sm">
+              Alla tjänster →
+            </BrutalistButton>
+          </ScrollReveal>
+
+          <div className="divide-y divide-[#e5e0d8]">
+            {tjanster.slice(0, 4).map((t, i) => (
+              <ScrollReveal key={t.id} delay={i * 0.06}>
+                <Link
+                  href="/tjanster"
+                  className="group flex items-center gap-6 md:gap-10 py-6 hover:bg-[#fafaf8] -mx-3 px-3 transition-colors"
+                >
+                  <span className="font-display text-xs text-[#ccc] w-6 flex-shrink-0 hidden sm:block">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-2xl flex-shrink-0 w-8 text-center" aria-hidden="true">{t.icon}</span>
+                  <h3 className="font-display text-xl md:text-2xl w-48 flex-shrink-0">
+                    {t.title}
+                  </h3>
+                  <p className="text-sm text-[#6b6b6b] leading-relaxed flex-1 hidden md:block">
+                    {t.shortDesc}
+                  </p>
+                  <div className="flex-shrink-0 text-right ml-auto">
+                    <div className="text-sm font-bold text-[#ff5722]">{t.price}</div>
+                    <div className="text-xs text-[#767676] mt-1 group-hover:text-[#0a0a0a] group-hover:translate-x-0.5 transition-all duration-200">
+                      Läs mer →
+                    </div>
+                  </div>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── PROCESSEN – giant-number typographic layout ─── */}
+      <section className="py-20 md:py-24 bg-[#fafaf8] border-b border-[#e5e0d8]">
+        <div className="max-w-7xl mx-auto px-6">
+          <ScrollReveal className="flex items-center gap-4 mb-14">
+            <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-[#ff5722] border border-[#ff5722] px-3 py-1">
+              Processen
+            </span>
+            <h2 className="font-display text-4xl md:text-5xl">Så enkelt funkar det</h2>
+          </ScrollReveal>
+
+          <div>
+            {[
+              {
+                num: "01",
+                title: "Första samtalet",
+                desc: "Ring eller boka tid online. Vi lyssnar på din situation och berättar vad som gäller – utan kostnad och utan förpliktelser.",
+                note: "Alltid gratis",
+              },
+              {
+                num: "02",
+                title: "Vi tar hand om allt",
+                desc: "Du slipper jaga papper och fylla i blanketter. Vi hanterar kontakt med myndigheter, motpart och domstol – och håller dig uppdaterad.",
+                note: "Transparenta priser",
+              },
+              {
+                num: "03",
+                title: "Nytt kapitel",
+                desc: "Du kan gå vidare med livet. Vi ser till att avtalen är juridiskt hållbara och att inget glöms bort som kan skapa problem senare.",
+                note: "Ordning på det juridiska",
+              },
+            ].map((step, i) => (
+              <ScrollReveal
+                key={step.num}
+                delay={i * 0.1}
+                className={`grid grid-cols-[5rem_1fr] md:grid-cols-[10rem_1fr] gap-4 md:gap-10 items-start ${
+                  i < 2 ? "border-b border-[#e5e0d8] pb-10 mb-10" : ""
+                }`}
+              >
+                <div className="font-display text-[5rem] md:text-[9rem] leading-none text-[#e8e4de] select-none" aria-hidden="true">
+                  {step.num}
+                </div>
+                <div className="pt-3 md:pt-6">
+                  <h3 className="font-display text-2xl md:text-3xl mb-3">{step.title}</h3>
+                  <p className="text-[#6b6b6b] leading-relaxed max-w-lg mb-3">{step.desc}</p>
+                  <span className="text-xs font-semibold text-[#ff5722] uppercase tracking-widest">
+                    — {step.note}
+                  </span>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── TEAM – featured founder + text list ─── */}
+      <section className="py-20 md:py-24 border-b border-[#e5e0d8]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-start">
+
+            {/* Left: founder feature */}
+            <ScrollReveal direction="left">
+              <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-[#ff5722] border border-[#ff5722] px-3 py-1 mb-8">
+                Teamet
+              </span>
+              <div className="flex items-start gap-5 mb-6">
+                <div
+                  className="w-16 h-16 flex-shrink-0 flex items-center justify-center font-display text-2xl"
+                  style={{ backgroundColor: "#fff0ec", color: "#ff5722" }}
+                >
+                  {medarbetare[0].initials}
+                </div>
+                <div>
+                  <h3 className="font-display text-2xl leading-tight">{medarbetare[0].name}</h3>
+                  <p className="text-xs text-[#ff5722] font-semibold uppercase tracking-widest mt-1">
+                    {medarbetare[0].title}
+                  </p>
+                </div>
+              </div>
+              <p className="text-[#444] leading-relaxed mb-6">{medarbetare[0].bio}</p>
+              <p className="text-sm text-[#888] italic border-l-2 border-[#ff5722] pl-4">
+                &ldquo;{medarbetare[0].personal}&rdquo;
+              </p>
+            </ScrollReveal>
+
+            {/* Right: rest of team as clean list + CTA */}
+            <ScrollReveal delay={0.15} className="lg:pt-16">
+              <p className="text-[#6b6b6b] leading-relaxed mb-8">
+                Vi är inte ett anonymt advokatkontor. Vi är fyra jurister med breda specialområden och ett gemensamt DNA: vi lyssnar mer än vi pratar.
+              </p>
+              <div className="divide-y divide-[#e5e0d8] mb-8">
+                {medarbetare.slice(1).map((m) => (
+                  <div key={m.id} className="flex items-center gap-4 py-4">
+                    <div
+                      className="w-9 h-9 flex-shrink-0 flex items-center justify-center font-display text-sm"
+                      style={{
+                        backgroundColor: m.color === "#ffeb3b" ? "#ffeb3b" : "#f7f7f5",
+                        color: m.color === "#ffeb3b" ? "#0a0a0a" : m.color,
+                      }}
+                    >
+                      {m.initials}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm">{m.name}</div>
+                      <div className="text-xs text-[#767676]">{m.title}</div>
+                    </div>
+                    <div className="text-xs text-[#767676] hidden sm:block">
+                      {m.specialties[0]}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <BrutalistButton href="/medarbetare" variant="outline">
+                Möt hela teamet →
+              </BrutalistButton>
+            </ScrollReveal>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ─── QUOTE ─── */}
+      <section className="border-b border-[#e5e0d8] py-16 bg-[#0a0a0a]">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <div className="w-8 h-px bg-[#ff5722] mx-auto mb-8" />
+          <p className="font-display text-2xl md:text-4xl text-white leading-snug mb-6">
+            &ldquo;Vi tror att alla förtjänar ett nytt kapitel – och att
+            advokaten inte ska vara det svåraste steget dit.&rdquo;
+          </p>
+          <p className="text-[#aaa] text-sm tracking-widest uppercase">
+            Sofia Lindqvist, Grundare
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* ─── FAQ ─── */}
+      <section className="py-20 md:py-28 bg-[#fafaf8] border-b border-[#e5e0d8]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <ScrollReveal direction="left">
+              <SectionHeader
+                tag="Vanliga frågor"
+                title="Det du undrar – vi svarar"
+                subtitle="Juridik ska inte vara mystik. Här är de vanligaste frågorna vi får."
+              />
+              <BrutalistButton href="/faq">Se alla frågor →</BrutalistButton>
+            </ScrollReveal>
+            <ScrollReveal delay={0.15}>
+              <FaqAccordion items={featuredFaq} />
+            </ScrollReveal>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* ─── BLOGG – magazine split layout ─── */}
+      <section className="py-20 md:py-24 border-b border-[#e5e0d8]">
+        <div className="max-w-7xl mx-auto px-6">
+          <ScrollReveal className="flex items-end justify-between mb-10 flex-wrap gap-4">
+            <div>
+              <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-[#ff5722] border border-[#ff5722] px-3 py-1 mb-4">
+                Från bloggen
+              </span>
+              <h2 className="font-display text-4xl md:text-5xl">
+                Juridik på mänskliga villkor
+              </h2>
+            </div>
+            <BrutalistButton href="/blogg" variant="outline" size="sm">
+              Alla artiklar →
+            </BrutalistButton>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.1} className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
+            {/* Featured article – large */}
+            <Link
+              href={`/blogg/${featuredBlogg[0].slug}`}
+              className="lg:col-span-3 group block bg-[#fafaf8] border border-[#e5e0d8] p-8 md:p-10 flex flex-col hover:border-[#ff5722] transition-colors"
+            >
+              <span className="text-xs font-bold uppercase tracking-widest text-[#ff5722] mb-4 block">
+                {featuredBlogg[0].category}
+              </span>
+              <h3 className="font-display text-2xl md:text-3xl leading-tight mb-4 flex-1 group-hover:text-[#ff5722] transition-colors">
+                {featuredBlogg[0].title}
+              </h3>
+              <p className="text-[#6b6b6b] leading-relaxed mb-6">
+                {featuredBlogg[0].excerpt}
+              </p>
+              <div className="flex items-center justify-between text-xs text-[#767676] pt-5 border-t border-[#e5e0d8]">
+                <span className="font-semibold text-[#0a0a0a]">{featuredBlogg[0].author}</span>
+                <span>{featuredBlogg[0].date} · {featuredBlogg[0].readTime}</span>
+              </div>
+            </Link>
+
+            {/* Two compact articles */}
+            <div className="lg:col-span-2 flex flex-col divide-y divide-[#e5e0d8] border border-[#e5e0d8]">
+              {featuredBlogg.slice(1).map((post) => (
+                <Link
+                  href={`/blogg/${post.slug}`}
+                  key={post.id}
+                  className="group flex flex-col p-6 flex-1 hover:bg-[#fafaf8] transition-colors"
+                >
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#ff5722] mb-2 block">
+                    {post.category}
+                  </span>
+                  <h3 className="font-display text-lg leading-tight mb-2 flex-1 group-hover:text-[#ff5722] transition-colors">
+                    {post.title}
+                  </h3>
+                  <div className="text-xs text-[#767676] mt-auto pt-3">
+                    {post.author} · {post.date} · {post.readTime}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ─── CONTACT CTA ─── */}
+      <section className="bg-[#0a0a0a] py-20 md:py-28">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <span className="inline-block text-xs font-bold tracking-[0.25em] uppercase border border-[#ff5722] text-[#ff5722] px-3 py-1.5 mb-8">
+            Redo att prata?
+          </span>
+          <h2 className="font-display text-5xl md:text-7xl text-white leading-tight mb-6">
+            Första samtalet
+            <br />
+            <span className="text-[#ff5722]">är alltid gratis.</span>
+          </h2>
+          <p className="text-[#888] text-xl mb-10 max-w-xl mx-auto leading-relaxed">
+            Inget juridikprat, ingen påtryckning – bara ett vanligt samtal om
+            din situation och vad vi kan göra för dig.
+          </p>
+          <Link
+            href="/kontakt"
+            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white border-2 border-white transition-all duration-100 hover:shadow-none hover:translate-x-1 hover:translate-y-1 hover:bg-white hover:text-[#0a0a0a]"
+            style={{ boxShadow: "5px 5px 0 #ff5722" }}
+          >
+            Boka samtal nu →
+          </Link>
+        </div>
+      </section>
+    </>
   );
 }
