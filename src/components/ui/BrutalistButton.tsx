@@ -13,13 +13,13 @@ interface BrutalistButtonProps {
 
 const variantStyles: Record<string, string> = {
   primary:
-    "bg-[#ff5722] text-white border border-[#cc3d13] shadow-sm hover:bg-[#e84d1c] hover:shadow-none transition-colors",
+    "bg-[#c9521a] text-white border-2 border-[#0a0a0a] shadow-[4px_4px_0_#0a0a0a] hover:bg-[#b84818] transition-colors",
   secondary:
     "bg-[#0a0a0a] text-white border border-[#0a0a0a] shadow-sm hover:bg-[#222] transition-colors",
   outline:
-    "bg-white text-[#0a0a0a] border border-[#0a0a0a] hover:bg-[#f7f7f5] transition-colors",
+    "bg-white text-[#c9521a] border border-[#c9521a] hover:bg-[#fdf0eb] transition-colors",
   yellow:
-    "bg-[#ffeb3b] text-[#0a0a0a] border border-[#0a0a0a] shadow-sm hover:bg-[#f5e032] transition-colors",
+    "bg-[#ffeb3b] text-[#c9521a] border border-[#c9521a] shadow-sm hover:bg-[#f5e032] transition-colors",
 };
 
 const sizeStyles: Record<string, string> = {

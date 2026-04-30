@@ -29,7 +29,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         <Link
           href="/"
-          className="font-display text-2xl leading-none text-[#0a0a0a] hover:text-[#ff5722] transition-colors"
+          className="font-display text-2xl leading-none text-[#0a0a0a] hover:text-[#c9521a] transition-colors"
         >
           HAGMANS
         </Link>
@@ -46,8 +46,8 @@ export default function Navbar() {
                 href={link.href}
                 className={`text-sm font-medium transition-colors pb-0.5 ${
                   active
-                    ? "text-[#ff5722] border-b-2 border-[#ff5722]"
-                    : "text-[#0a0a0a] hover:text-[#ff5722]"
+                    ? "text-[#c9521a] border-b-2 border-[#c9521a]"
+                    : "text-[#0a0a0a] hover:text-[#c9521a]"
                 }`}
               >
                 {link.label}
@@ -57,12 +57,21 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link
-            href="/kontakt"
-            className="hidden lg:inline-flex items-center px-4 py-2 bg-[#ff5722] text-white text-sm font-bold hover:bg-[#e84d1c] transition-colors"
-          >
-            Boka samtal →
-          </Link>
+          {pathname === "/" ? (
+            <Link
+              href="/kontakt"
+              className="hidden lg:inline-flex items-center text-sm font-bold text-[#0a0a0a] hover:text-[#c9521a] transition-colors"
+            >
+              Boka samtal →
+            </Link>
+          ) : (
+            <Link
+              href="/kontakt"
+              className="hidden lg:inline-flex items-center px-4 py-2 bg-[#c9521a] text-white text-sm font-bold hover:bg-[#b84818] transition-colors"
+            >
+              Boka samtal →
+            </Link>
+          )}
 
           <button
             className="lg:hidden p-2 border border-[#d8d4cc] hover:bg-[#f7f7f5] transition-colors"
@@ -106,7 +115,7 @@ export default function Navbar() {
             <Link
               href="/kontakt"
               onClick={() => setIsOpen(false)}
-              className="block text-center px-4 py-3 bg-[#ff5722] text-white text-sm font-bold border-2 border-[#0a0a0a] shadow-[3px_3px_0_#0a0a0a]"
+              className="block text-center px-4 py-3 bg-[#c9521a] text-white text-sm font-bold border-2 border-[#0a0a0a] shadow-[3px_3px_0_#0a0a0a]"
             >
               Boka kostnadsfritt samtal →
             </Link>

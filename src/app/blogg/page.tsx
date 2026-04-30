@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BrutalistButton from "@/components/ui/BrutalistButton";
 import BrutalistCard from "@/components/ui/BrutalistCard";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { bloggPosts } from "@/data/blogg";
@@ -44,10 +45,10 @@ export default function BloggPage() {
               </div>
               <div className="p-8 md:p-10">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="bg-[#ff5722] text-white text-xs font-bold uppercase tracking-widest px-3 py-1">
+                  <span className="bg-[#c9521a] text-white text-xs font-bold uppercase tracking-widest px-3 py-1">
                     Senaste
                   </span>
-                  <span className="text-xs font-bold text-[#ff5722] uppercase tracking-widest">
+                  <span className="text-xs font-bold text-[#c9521a] uppercase tracking-widest">
                     {bloggPosts[0].category}
                   </span>
                 </div>
@@ -81,10 +82,9 @@ export default function BloggPage() {
             {bloggPosts.slice(1).map((post) => (
               <Link href={`/blogg/${post.slug}`} key={post.id} className="block">
                 <BrutalistCard className="h-full flex flex-col overflow-hidden" hoverable>
-                  <div className="h-2 bg-[#ff5722]" />
                   <div className="p-6 flex flex-col flex-1">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-bold uppercase tracking-widest text-[#ff5722]">
+                      <span className="text-xs font-bold uppercase tracking-widest text-[#c9521a]">
                         {post.category}
                       </span>
                       <span className="text-[#ddd]">·</span>
@@ -96,7 +96,7 @@ export default function BloggPage() {
                     <p className="text-sm text-[#6b6b6b] leading-relaxed mb-5">
                       {post.excerpt}
                     </p>
-                    <div className="flex items-center justify-between text-xs text-[#888] pt-4 border-t border-gray-100">
+                    <div className="flex items-center justify-between text-xs text-[#888] pt-4 border-t border-[#e5e0d8]">
                       <span className="font-semibold text-[#0a0a0a]">
                         {post.author}
                       </span>
@@ -123,12 +123,11 @@ export default function BloggPage() {
             <input
               type="email"
               placeholder="din@mejl.se"
-              className="flex-1 border-2 border-[#0a0a0a] border-r-0 px-4 py-3 text-sm bg-white focus:outline-none"
-              readOnly
+              className="flex-1 border-2 border-[#0a0a0a] border-r-0 px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#c9521a]"
             />
-            <button className="px-6 py-3 bg-[#ff5722] text-white text-sm font-bold border-2 border-[#0a0a0a] hover:bg-[#e64a19] transition-colors">
-              Prenumerera
-            </button>
+            <BrutalistButton href="/kontakt" variant="primary" className="whitespace-nowrap">
+              Prenumerera →
+            </BrutalistButton>
           </div>
         </div>
       </section>

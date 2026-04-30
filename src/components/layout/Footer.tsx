@@ -47,7 +47,7 @@ export default function Footer() {
           <div className="mt-8">
             <Link
               href="/kontakt"
-              className="inline-flex items-center px-5 py-3 bg-[#ff5722] text-white text-sm font-bold border-2 border-white shadow-[3px_3px_0_white] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all duration-100"
+              className="inline-flex items-center px-5 py-3 bg-[#c9521a] text-white text-sm font-bold border-2 border-white shadow-[3px_3px_0_white] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all duration-100"
             >
               Boka kostnadsfritt samtal →
             </Link>
@@ -55,7 +55,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-bold text-xs uppercase tracking-[0.2em] mb-5 text-[#ff5722]">
+          <h3 className="font-bold text-xs uppercase tracking-[0.2em] mb-5 text-[#c9521a]">
             Tjänster
           </h3>
           <ul className="space-y-2.5 text-sm text-[#888]">
@@ -73,7 +73,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-bold text-xs uppercase tracking-[0.2em] mb-5 text-[#ff5722]">
+          <h3 className="font-bold text-xs uppercase tracking-[0.2em] mb-5 text-[#c9521a]">
             Byrån
           </h3>
           <ul className="space-y-2.5 text-sm text-[#888]">

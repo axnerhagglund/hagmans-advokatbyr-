@@ -47,7 +47,7 @@ export default function FaqPage() {
               placeholder="Sök bland frågorna..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full border-2 border-[#0a0a0a] px-4 py-3 pr-12 text-sm font-medium focus:outline-none focus:border-[#ff5722] transition-colors bg-white"
+              className="w-full border-2 border-[#0a0a0a] px-4 py-3 pr-12 text-sm font-medium focus:outline-none focus:border-[#c9521a] transition-colors bg-white"
             />
             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#888]">
               ⌕
@@ -62,7 +62,7 @@ export default function FaqPage() {
                 onClick={() => setActiveCategory(cat.id)}
                 className={`px-4 py-2 text-sm font-semibold border-2 border-[#0a0a0a] transition-all ${
                   activeCategory === cat.id
-                    ? "bg-[#ff5722] text-white shadow-[3px_3px_0_#0a0a0a]"
+                    ? "bg-[#c9521a] text-white shadow-[3px_3px_0_#0a0a0a]"
                     : "bg-white hover:bg-[#ffeb3b]"
                 }`}
               >

@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-04-29T12:00:00Z",
+  "title": "Design System: Hagmans Familjerättsbyrå",
+  "extensions": {
+    "colorMeta": {
+      "signal-orange": {
+        "role": "primary",
+        "displayName": "Fearless Signal",
+        "canonical": "#ff5722",
+        "tonalRamp": ["#3d0d00", "#6b1a00", "#99270a", "#cc3d13", "#ff5722", "#ff8358", "#ffaa8e", "#ffd4c4"]
+      },
+      "marker-yellow": {
+        "role": "secondary",
+        "displayName": "Marker Yellow",
+        "canonical": "#ffeb3b",
+        "tonalRamp": ["#3d3200", "#6b5800", "#998000", "#ccab00", "#ffeb3b", "#fff176", "#fff9c4", "#fffde7"]
+      },
+      "editorial-ink": {
+        "role": "neutral",
+        "displayName": "Editorial Ink",
+        "canonical": "#0a0a0a",
+        "tonalRamp": ["#0a0a0a", "#1a1a1a", "#2d2d2d", "#444444", "#6b6b6b", "#888888", "#b0b0b0", "#d4d4d4"]
+      },
+      "warm-canvas": {
+        "role": "neutral",
+        "displayName": "Warm Canvas",
+        "canonical": "#fafaf8",
+        "tonalRamp": ["#cac9c7", "#d5d4d2", "#e0dfdd", "#eae9e7", "#f2f2f0", "#f6f6f4", "#fafaf8", "#fdfdfc"]
+      },
+      "base-white": {
+        "role": "neutral",
+        "displayName": "Base White",
+        "canonical": "#ffffff",
+        "tonalRamp": ["#d0d0d0", "#dadada", "#e5e5e5", "#eeeeee", "#f5f5f5", "#f9f9f9", "#fcfcfc", "#ffffff"]
+      },
+      "parchment-border": {
+        "role": "neutral",
+        "displayName": "Parchment Border",
+        "canonical": "#e5e0d8",
+        "tonalRamp": ["#8c8580", "#a89e97", "#c2bab2", "#d5cfc7", "#e5e0d8", "#ede9e3", "#f4f1ec", "#faf8f5"]
+      },
+      "body-muted": {
+        "role": "neutral",
+        "displayName": "Body Muted",
+        "canonical": "#6b6b6b",
+        "tonalRamp": ["#1a1a1a", "#2d2d2d", "#404040", "#555555", "#6b6b6b", "#888888", "#aaaaaa", "#cccccc"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Hero Display",
+        "purpose": "Hero headlines only — one per page, uppercase, line-height 0.88 for visual mass."
+      },
+      "headline": {
+        "displayName": "Section Headline",
+        "purpose": "Section h2 titles and inner-page h1s. Mixed case. The editorial workhorse."
+      },
+      "title": {
+        "displayName": "Card/Item Title",
+        "purpose": "Team names, blog headlines in lists, service card headers."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Primary reading text. Max 65ch line length. Lead paragraphs at 1.25rem, body at 1rem."
+      },
+      "label": {
+        "displayName": "Label / Tag",
+        "purpose": "Section tags, nav categories, metadata. Uppercase, tracked at +0.15–0.25em. The system's typographic fingerprint."
+      }
+    },
+    "shadows": [
+      {
+        "name": "brutalist-sm",
+        "value": "2px 2px 0 #0a0a0a",
+        "purpose": "BrutalistCard default. Stamp device on hoverable cards — not an elevation signal."
+      },
+      {
+        "name": "brutalist-md",
+        "value": "4px 4px 0 #0a0a0a",
+        "purpose": "Heavier stamp variant for larger interactive blocks."
+      },
+      {
+        "name": "brutalist-orange",
+        "value": "5px 5px 0 #ff5722",
+        "purpose": "Signature CTA shadow in dark sections. Orange offset against dark background."
+      },
+      {
+        "name": "brutalist-white",
+        "value": "3px 3px 0 #ffffff",
+        "purpose": "Footer button stamp — white offset on dark background."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.19, 1, 0.22, 1)",
+        "purpose": "Scroll reveals (ScrollReveal component). Fast, snappy, non-bouncy."
+      },
+      {
+        "name": "ease-out-quart",
+        "value": "cubic-bezier(0.25, 1, 0.5, 1)",
+        "purpose": "Accordion expand/collapse and indicator rotation. Responsive state transitions."
+      },
+      {
+        "name": "fast-state",
+        "value": "100ms linear",
+        "purpose": "Button hover color and shadow transitions. Decisive, not leisurely."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main call-to-action. Square corners, Signal orange, Fira Sans 700.",
+      "html": "<button class=\"ds-btn-primary\">Boka kostnadsfritt samtal →</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; background: #ff5722; color: #ffffff; border: none; border-radius: 0; padding: 16px 32px; font-family: 'Fira Sans', Helvetica, sans-serif; font-size: 1rem; font-weight: 700; line-height: 1; cursor: pointer; transition: background 100ms linear, box-shadow 100ms linear, transform 100ms linear; } .ds-btn-primary:hover { background: #e84d1c; } .ds-btn-primary:active { transform: translate(1px, 1px); box-shadow: none; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action alongside a Primary. Ink border, white fill.",
+      "html": "<button class=\"ds-btn-outline\">Våra tjänster</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; background: #ffffff; color: #0a0a0a; border: 1px solid #0a0a0a; border-radius: 0; padding: 12px 24px; font-family: 'Fira Sans', Helvetica, sans-serif; font-size: 1rem; font-weight: 600; line-height: 1; cursor: pointer; transition: background 100ms linear; } .ds-btn-outline:hover { background: #f7f7f5; } .ds-btn-outline:active { transform: translate(1px, 1px); }"
+    },
+    {
+      "name": "Dark CTA Button",
+      "kind": "button",
+      "refersTo": "button-dark-cta",
+      "description": "Used only in the full-bleed dark CTA section. White fill, orange stamp shadow.",
+      "html": "<button class=\"ds-btn-dark-cta\">Boka samtal nu →</button>",
+      "css": ".ds-btn-dark-cta { display: inline-flex; align-items: center; justify-content: center; background: transparent; color: #ffffff; border: 2px solid #ffffff; border-radius: 0; padding: 16px 32px; font-family: 'Fira Sans', Helvetica, sans-serif; font-size: 1.125rem; font-weight: 600; line-height: 1; cursor: pointer; box-shadow: 5px 5px 0 #ff5722; transition: box-shadow 100ms linear, transform 100ms linear, background 100ms linear, color 100ms linear; } .ds-btn-dark-cta:hover { box-shadow: none; transform: translate(1px, 1px); background: #ffffff; color: #0a0a0a; }"
+    },
+    {
+      "name": "Section Tag",
+      "kind": "chip",
+      "refersTo": "tag-label",
+      "description": "Chapter-marker opening every section. Orange border, orange text, zero radius, heavy tracking.",
+      "html": "<span class=\"ds-tag\">Vad vi gör</span>",
+      "css": ".ds-tag { display: inline-block; border: 1px solid #ff5722; color: #ff5722; background: transparent; border-radius: 0; padding: 4px 12px; font-family: 'Fira Sans', Helvetica, sans-serif; font-size: 0.75rem; font-weight: 700; line-height: 1.4; letter-spacing: 0.2em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Brutalist Card",
+      "kind": "card",
+      "refersTo": "button-outline",
+      "description": "Content container with offset stamp shadow. Hoverable state lifts the stamp slightly.",
+      "html": "<div class=\"ds-card\"><p class=\"ds-card-title\">Skilsmässa</p><p class=\"ds-card-body\">Vi hjälper dig genom hela processen.</p></div>",
+      "css": ".ds-card { background: #ffffff; border: 1px solid #d8d4cc; border-radius: 0; padding: 20px; box-shadow: 2px 2px 0 #0a0a0a; cursor: pointer; transition: box-shadow 150ms linear, transform 150ms linear; } .ds-card:hover { box-shadow: 3px 3px 0 #0a0a0a; transform: translate(-1px, -1px); } .ds-card-title { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.25rem; font-weight: 400; color: #0a0a0a; margin: 0 0 8px 0; } .ds-card-body { font-family: 'Fira Sans', Helvetica, sans-serif; font-size: 0.875rem; color: #6b6b6b; margin: 0; line-height: 1.6; }"
+    },
+    {
+      "name": "Service Row Item",
+      "kind": "custom",
+      "refersTo": "tag-label",
+      "description": "The system's signature pattern. Numbered row list for services — avoids identical card grids.",
+      "html": "<div class=\"ds-service-row\"><span class=\"ds-service-num\">01</span><span class=\"ds-service-icon\">⚖️</span><span class=\"ds-service-title\">Skilsmässa</span><span class=\"ds-service-desc\">Juridisk hjälp genom hela skilsmässoprocessen.</span><span class=\"ds-service-price\">Från 3 500 kr/h</span></div>",
+      "css": ".ds-service-row { display: flex; align-items: center; gap: 24px; padding: 24px 0; border-top: 1px solid #e5e0d8; } .ds-service-num { font-family: 'DM Serif Display', Georgia, serif; font-size: 0.75rem; color: #cccccc; width: 24px; flex-shrink: 0; } .ds-service-icon { font-size: 1.5rem; width: 32px; text-align: center; flex-shrink: 0; } .ds-service-title { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.25rem; font-weight: 400; color: #0a0a0a; width: 192px; flex-shrink: 0; } .ds-service-desc { font-family: 'Fira Sans', Helvetica, sans-serif; font-size: 0.875rem; color: #6b6b6b; line-height: 1.6; flex: 1; } .ds-service-price { font-family: 'Fira Sans', Helvetica, sans-serif; font-size: 0.875rem; font-weight: 700; color: #ff5722; flex-shrink: 0; text-align: right; }"
+    },
+    {
+      "name": "FAQ Accordion Row",
+      "kind": "custom",
+      "refersTo": "button-outline",
+      "description": "CSS grid expansion — content always in DOM, no layout shift on open.",
+      "html": "<div class=\"ds-faq\"><button class=\"ds-faq-trigger\" aria-expanded=\"false\"><span>Vad kostar en skilsmässa?</span><span class=\"ds-faq-icon\">+</span></button><div class=\"ds-faq-body\"><div class=\"ds-faq-inner\">Kostnaderna varierar beroende på ärendets komplexitet.</div></div></div>",
+      "css": ".ds-faq { border: 1px solid #d8d4cc; border-radius: 0; } .ds-faq-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: transparent; border: none; cursor: pointer; font-family: 'Fira Sans', Helvetica, sans-serif; font-size: 0.875rem; font-weight: 600; color: #0a0a0a; gap: 16px; } .ds-faq-trigger:hover { background: #fafaf8; } .ds-faq-icon { flex-shrink: 0; width: 24px; height: 24px; border: 1px solid #d8d4cc; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 500; color: #888; transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1); } .ds-faq-trigger[aria-expanded='true'] .ds-faq-icon { transform: rotate(45deg); } .ds-faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.25s cubic-bezier(0.25, 1, 0.5, 1); } .ds-faq-trigger[aria-expanded='true'] + .ds-faq-body { grid-template-rows: 1fr; } .ds-faq-inner-wrap { overflow: hidden; } .ds-faq-inner { padding: 16px 24px 20px; font-family: 'Fira Sans', Helvetica, sans-serif; font-size: 0.875rem; color: #444; line-height: 1.6; background: #fafaf8; border-top: 1px solid #f0f0f0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Witness Stand",
+    "overview": "This system exists for someone reading it at the worst point in their year. Divorce proceedings just served, a custody dispute escalating, a parent's estate in dispute. The visual language must do one job: communicate that the people behind this site will tell the truth, handle the complexity, and not add to the stress. Every design decision is tested against that scene.\n\nThe system is brutalist in structure and editorial in tone. The large serif display type and the hard square forms carry authority without marble-lobby grandeur. The near-black-and-cream base palette reads as legal seriousness; the Fearless Signal orange reads as human and direct, not corporate or SaaS-friendly. Yellow marks moments the way a highlighter in a brief does: deliberate, functional, not decorative.\n\nThe system explicitly rejects two failure modes. The first is the big-firm aesthetic — marble textures, gold seals, three-letter names, glass towers in hero images — which signals inaccessibility and expense to exactly the people this firm wants to help. The second is the legal-tech startup mode — pastel gradients, floating avatars, 'disrupting the legal industry' copy, rounded pill buttons — which signals shallowness and tech-company blandness. Hagmans looks like neither. It looks like a document you can trust.",
+    "keyCharacteristics": [
+      "Square corners throughout. Zero border radius without exception.",
+      "Two-font system: display serif for authority, humanist sans for readability.",
+      "Flat surfaces with no ambient shadows. Depth through color contrast and border density.",
+      "Orange used sparingly as the one voice that signals action; yellow used as a functional highlighter.",
+      "Dense letter-spacing on all labels and tags (+0.15em to +0.25em) is the system's typographic signature.",
+      "Section rhythm through alternating cream and white backgrounds, never through decoration."
+    ],
+    "rules": [
+      {
+        "name": "The One Voice Rule",
+        "body": "Signal orange appears on ≤15% of any given screen. Its job is to mark the single most important action or element in a viewport. Using it on two competing elements at once cancels both.",
+        "section": "colors"
+      },
+      {
+        "name": "The Highlighter Rule",
+        "body": "Marker Yellow is never a background for body text and never used on dark surfaces. It lives in headlines, selections, and the occasional tape-style pull quote.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tight Crown Rule",
+        "body": "Display headlines use line-height: 0.88. This intentional compression creates visual mass at large sizes. Never increase it toward 1.0 on display type — the result looks timid, not legible.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tracking Tax",
+        "body": "Every uppercase label pays the tracking tax: +0.15em minimum, +0.25em maximum. Labels without tracking read as mistakes, not choices.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-by-Default Rule",
+        "body": "Any proposed use of box-shadow with blur radius greater than 0 is prohibited. Soft ambient shadows signal a different product category. If you want to signal importance, use color and scale, not shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Stamp Exception",
+        "body": "Offset hard shadows (blur: 0) are permitted only on interactive elements: primary buttons, CTA blocks, and BrutalistCard when hoverable. Never on static containers, section wrappers, or text blocks.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use border-radius: 0 everywhere — no exceptions.",
+      "Do lead every section with the tag pattern (text-xs font-bold tracking-[0.2em] uppercase, orange border and text).",
+      "Do alternate sections between #ffffff and #fafaf8 for rhythm. Use #0a0a0a only for quotes and the final CTA block.",
+      "Do keep display typography tight: line-height 0.88 on hero, 1.2 on headlines.",
+      "Do use Fearless Signal orange for the single most important action in a viewport.",
+      "Do cap body text at 65ch.",
+      "Do use the CSS grid-template-rows: 0fr to 1fr pattern for expandable content — never conditionally insert DOM nodes.",
+      "Do reference the firm's actual lawyers by name. Real humans outweigh brand abstraction."
+    ],
+    "donts": [
+      "Don't use marble textures, gold seals, dark wood photography, or monogrammed logotypes.",
+      "Don't use pastel gradients, rounded pill buttons, floating UI illustrations, or disrupting-the-legal-industry framing.",
+      "Don't use border-left or border-right greater than 1px as a colored accent stripe on cards, callouts, or list items.",
+      "Don't use background-clip: text with a gradient. Single solid color for all text.",
+      "Don't use ambient box-shadows (blur > 0). The system is flat.",
+      "Don't build identical card grids. Use the row-list pattern for services.",
+      "Don't put important actions behind modals.",
+      "Don't use orange on more than 15% of any given screen surface.",
+      "Don't remove the tracking from uppercase labels."
+    ]
+  }
+}

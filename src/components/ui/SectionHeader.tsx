@@ -18,7 +18,7 @@ export default function SectionHeader({
   return (
     <div className={`flex flex-col ${alignClass} mb-10 ${className}`}>
       {tag && (
-        <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-[#ff5722] mb-4 border border-[#ff5722] px-3 py-1">
+        <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-[#c9521a] mb-4 border border-[#c9521a] px-3 py-1">
           {tag}
         </span>
       )}

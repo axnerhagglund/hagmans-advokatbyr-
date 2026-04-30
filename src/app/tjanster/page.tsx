@@ -60,14 +60,14 @@ export default function TjansterPage() {
               <div className="space-y-6">
                 <div>
                   <h3 className="font-bold text-sm uppercase tracking-widest mb-2 flex items-center gap-2">
-                    <span className="w-4 h-0.5 bg-[#ff5722] inline-block" />
+                    <span className="w-4 h-0.5 bg-[#c9521a] inline-block" />
                     Vad det innebär
                   </h3>
                   <p className="text-[#444] leading-relaxed">{t.whatItMeans}</p>
                 </div>
                 <div>
                   <h3 className="font-bold text-sm uppercase tracking-widest mb-2 flex items-center gap-2">
-                    <span className="w-4 h-0.5 bg-[#ff5722] inline-block" />
+                    <span className="w-4 h-0.5 bg-[#c9521a] inline-block" />
                     När du behöver det
                   </h3>
                   <p className="text-[#444] leading-relaxed">
@@ -76,7 +76,7 @@ export default function TjansterPage() {
                 </div>
                 <div>
                   <h3 className="font-bold text-sm uppercase tracking-widest mb-2 flex items-center gap-2">
-                    <span className="w-4 h-0.5 bg-[#ff5722] inline-block" />
+                    <span className="w-4 h-0.5 bg-[#c9521a] inline-block" />
                     Hur vi hjälper
                   </h3>
                   <p className="text-[#444] leading-relaxed">{t.howWeHelp}</p>
@@ -99,7 +99,7 @@ export default function TjansterPage() {
                   <div className="text-xs font-bold uppercase tracking-widest text-[#888] mb-1">
                     Pris
                   </div>
-                  <div className="font-display text-2xl text-[#ff5722]">
+                  <div className="font-display text-2xl text-[#c9521a]">
                     {t.price}
                   </div>
                 </div>
@@ -120,7 +120,7 @@ export default function TjansterPage() {
       </div>
 
       {/* ─── CTA ─── */}
-      <section className="bg-[#ff5722] border-t-2 border-[#0a0a0a] py-16">
+      <section className="bg-[#c9521a] border-t-2 border-[#0a0a0a] py-16">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="font-display text-4xl md:text-5xl text-white mb-4">
             Osäker på vad du behöver?

@@ -8,7 +8,7 @@ interface BrutalistCardProps {
 
 const accentBorder: Record<string, string> = {
   none: "",
-  orange: "border-t-4 border-t-[#ff5722]",
+  orange: "border-t-4 border-t-[#c9521a]",
   yellow: "border-t-4 border-t-[#ffeb3b]",
   black: "border-t-4 border-t-[#0a0a0a]",
 };

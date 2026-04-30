@@ -60,9 +60,9 @@ export default function OmOssPage() {
 
           <div
             className="bg-[#0a0a0a] p-10 text-white"
-            style={{ boxShadow: "8px 8px 0 #ff5722" }}
+            style={{ boxShadow: "8px 8px 0 #c9521a" }}
           >
-            <div className="font-display text-6xl text-[#ff5722] mb-6">2015</div>
+            <div className="font-display text-6xl text-[#c9521a] mb-6">2015</div>
             <p className="text-lg leading-relaxed text-[#ccc] mb-8">
               Grundades av Sofia Lindqvist med en enkel vision: en
               familjerättsbyrå som faktiskt lyssnar.
@@ -147,7 +147,7 @@ export default function OmOssPage() {
       {/* ─── MANIFESTO ─── */}
       <section className="py-20 md:py-28 bg-[#0a0a0a] border-b-2 border-[#0a0a0a]">
         <div className="max-w-4xl mx-auto px-6">
-          <span className="inline-block text-xs font-bold tracking-[0.25em] uppercase border border-[#ff5722] text-[#ff5722] px-3 py-1.5 mb-10">
+          <span className="inline-block text-xs font-bold tracking-[0.25em] uppercase border border-[#c9521a] text-[#c9521a] px-3 py-1.5 mb-10">
             Vårt manifest
           </span>
           <div className="space-y-6">
@@ -156,7 +156,7 @@ export default function OmOssPage() {
                 key={i}
                 className="flex items-start gap-5 border-b border-[#1a1a1a] pb-6"
               >
-                <span className="text-[#ff5722] font-bold text-xl mt-0.5 flex-shrink-0">
+                <span className="text-[#c9521a] font-bold text-xl mt-0.5 flex-shrink-0">
                   ✦
                 </span>
                 <p className="font-display text-2xl md:text-3xl text-white leading-tight">

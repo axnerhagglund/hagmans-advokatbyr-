@@ -7,7 +7,7 @@ export default function PriserPage() {
   return (
     <>
       {/* ─── HERO ─── */}
-      <section className="border-b-2 border-[#0a0a0a] py-16 md:py-20 bg-[#fafal8]">
+      <section className="border-b-2 border-[#0a0a0a] py-16 md:py-20 bg-[#fafaf8]">
         <div className="max-w-7xl mx-auto px-6">
           <span className="inline-block text-xs font-bold tracking-[0.25em] uppercase border-2 border-[#0a0a0a] px-3 py-1.5 mb-8">
             Priser
@@ -28,7 +28,7 @@ export default function PriserPage() {
 
       {/* ─── FREE CALL BANNER ─── */}
       <div
-        className="bg-[#ff5722] border-b-2 border-[#0a0a0a] py-5"
+        className="bg-[#c9521a] border-b-2 border-[#0a0a0a] py-5"
       >
         <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white font-bold text-lg">
@@ -60,7 +60,7 @@ export default function PriserPage() {
                 }`}
               >
                 {pkg.highlight && (
-                  <div className="absolute -top-4 left-6 bg-[#ff5722] border-2 border-[#0a0a0a] px-3 py-1 text-white text-xs font-bold uppercase tracking-widest">
+                  <div className="absolute -top-4 left-6 bg-[#c9521a] border-2 border-[#0a0a0a] px-3 py-1 text-white text-xs font-bold uppercase tracking-widest">
                     Populärast
                   </div>
                 )}
@@ -69,10 +69,8 @@ export default function PriserPage() {
                   <h3 className="font-display text-2xl mb-1">{pkg.title}</h3>
                   <p className="text-sm text-[#888] mb-5">{pkg.subtitle}</p>
 
-                  <div className="bg-[#fafal8] border-2 border-[#0a0a0a] p-4 mb-5"
-                    style={{ backgroundColor: "#fafaf8" }}
-                  >
-                    <div className="font-display text-3xl text-[#ff5722]">
+                  <div className="bg-[#fafaf8] border-2 border-[#0a0a0a] p-4 mb-5">
+                    <div className="font-display text-3xl text-[#c9521a]">
                       {pkg.price}
                     </div>
                     <div className="text-xs text-[#888] mt-1">{pkg.priceNote}</div>
@@ -81,7 +79,7 @@ export default function PriserPage() {
                   <ul className="space-y-2.5">
                     {pkg.included.map((item) => (
                       <li key={item} className="flex items-start gap-2.5 text-sm text-[#444]">
-                        <span className="text-[#ff5722] font-bold mt-0.5 flex-shrink-0">✓</span>
+                        <span className="text-[#c9521a] font-bold mt-0.5 flex-shrink-0">✓</span>
                         {item}
                       </li>
                     ))}
@@ -169,7 +167,7 @@ export default function PriserPage() {
                 a: "Vi informerar dig alltid i förväg om vi ser att ett ärende riskerar att bli dyrare än estimerat. Inga överraskningar.",
               },
             ].map((item) => (
-              <div key={item.q} className="border-b border-gray-200 pb-6">
+              <div key={item.q} className="border-b border-[#e5e0d8] pb-6">
                 <h3 className="font-semibold mb-2">{item.q}</h3>
                 <p className="text-[#6b6b6b] leading-relaxed">{item.a}</p>
               </div>

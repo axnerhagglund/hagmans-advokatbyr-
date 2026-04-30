@@ -9,7 +9,7 @@ export default function HighlightText({
   color = "yellow",
   className = "",
 }: HighlightTextProps) {
-  const bg = color === "yellow" ? "#ffeb3b" : "#ff5722";
+  const bg = color === "yellow" ? "#ffeb3b" : "#c9521a";
   const fg = color === "orange" ? "#ffffff" : "inherit";
 
   return (

@@ -63,7 +63,7 @@ export default function MedarbetarePage() {
                 <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
                   <div>
                     <h2 className="font-display text-3xl mb-1">{m.name}</h2>
-                    <p className="text-[#ff5722] font-semibold text-sm uppercase tracking-wide">
+                    <p className="text-[#c9521a] font-semibold text-sm uppercase tracking-wide">
                       {m.title}
                     </p>
                   </div>
@@ -93,13 +93,13 @@ export default function MedarbetarePage() {
                 <div className="flex flex-wrap gap-4 text-sm">
                   <a
                     href={`mailto:${m.email}`}
-                    className="font-semibold text-[#ff5722] hover:underline"
+                    className="font-semibold text-[#c9521a] hover:underline"
                   >
                     {m.email}
                   </a>
                   <a
                     href={`tel:${m.phone.replace(/-/g, "").replace(/ /g, "")}`}
-                    className="font-semibold text-[#0a0a0a] hover:text-[#ff5722] transition-colors"
+                    className="font-semibold text-[#0a0a0a] hover:text-[#c9521a] transition-colors"
                   >
                     {m.phone}
                   </a>

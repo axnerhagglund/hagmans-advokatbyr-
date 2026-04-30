@@ -59,13 +59,13 @@ export default async function BloggPostPage({ params }: Props) {
         <div className="max-w-4xl mx-auto px-6">
           <Link
             href="/blogg"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#888] hover:text-[#ff5722] transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[#888] hover:text-[#c9521a] transition-colors mb-8"
           >
             ← Tillbaka till bloggen
           </Link>
 
           <div className="flex flex-wrap items-center gap-3 mb-6">
-            <span className="bg-[#ff5722] text-white text-xs font-bold uppercase tracking-widest px-3 py-1">
+            <span className="bg-[#c9521a] text-white text-xs font-bold uppercase tracking-widest px-3 py-1">
               {post.category}
             </span>
             <span className="text-sm text-[#888]">
@@ -83,7 +83,7 @@ export default async function BloggPostPage({ params }: Props) {
 
           <div className="flex items-center gap-4">
             <div
-              className="w-12 h-12 border-2 border-[#0a0a0a] flex items-center justify-center font-display text-lg bg-[#ff5722] text-white"
+              className="w-12 h-12 border-2 border-[#0a0a0a] flex items-center justify-center font-display text-lg bg-[#c9521a] text-white"
             >
               {post.author.split(" ").map((n) => n[0]).join("")}
             </div>
@@ -126,7 +126,7 @@ export default async function BloggPostPage({ params }: Props) {
                 </h3>
                 <div className="flex items-start gap-3">
                   <div
-                    className="w-12 h-12 border-2 border-[#0a0a0a] flex items-center justify-center font-display text-lg bg-[#ff5722] text-white flex-shrink-0"
+                    className="w-12 h-12 border-2 border-[#0a0a0a] flex items-center justify-center font-display text-lg bg-[#c9521a] text-white flex-shrink-0"
                   >
                     {post.author.split(" ").map((n) => n[0]).join("")}
                   </div>
@@ -171,9 +171,9 @@ export default async function BloggPostPage({ params }: Props) {
             {related.map((p) => (
               <Link href={`/blogg/${p.slug}`} key={p.id} className="block">
                 <BrutalistCard className="h-full flex flex-col overflow-hidden" hoverable>
-                  <div className="h-2 bg-[#ff5722]" />
+                  <div className="h-2 bg-[#c9521a]" />
                   <div className="p-6 flex flex-col flex-1">
-                    <span className="text-xs font-bold uppercase tracking-widest text-[#ff5722] mb-2">
+                    <span className="text-xs font-bold uppercase tracking-widest text-[#c9521a] mb-2">
                       {p.category}
                     </span>
                     <h3 className="font-display text-lg leading-tight mb-2 flex-1">

@@ -45,7 +45,7 @@ export default function KontaktPage() {
           </span>
           <h1 className="font-display text-5xl md:text-7xl leading-tight mb-6">
             Ta det{" "}
-            <mark className="bg-[#ff5722] text-white px-2">första</mark>
+            <mark className="bg-[#ffeb3b] px-1">första</mark>
             <br />
             steget.
           </h1>
@@ -97,7 +97,7 @@ export default function KontaktPage() {
                         autoComplete="name"
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        className="w-full border-2 border-[#0a0a0a] px-4 py-3 text-base focus:outline-none focus:border-[#ff5722] focus:ring-2 focus:ring-[#ff5722] focus:ring-offset-0 transition-colors"
+                        className="w-full border-2 border-[#0a0a0a] px-4 py-3 text-base focus:outline-none focus:border-[#c9521a] focus:ring-2 focus:ring-[#c9521a] focus:ring-offset-0 transition-colors"
                         placeholder="Anna Svensson"
                       />
                     </div>
@@ -112,7 +112,7 @@ export default function KontaktPage() {
                         autoComplete="email"
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
-                        className="w-full border-2 border-[#0a0a0a] px-4 py-3 text-base focus:outline-none focus:border-[#ff5722] focus:ring-2 focus:ring-[#ff5722] focus:ring-offset-0 transition-colors"
+                        className="w-full border-2 border-[#0a0a0a] px-4 py-3 text-base focus:outline-none focus:border-[#c9521a] focus:ring-2 focus:ring-[#c9521a] focus:ring-offset-0 transition-colors"
                         placeholder="anna@exempel.se"
                       />
                     </div>
@@ -129,7 +129,7 @@ export default function KontaktPage() {
                         autoComplete="tel"
                         value={form.phone}
                         onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                        className="w-full border-2 border-[#0a0a0a] px-4 py-3 text-base focus:outline-none focus:border-[#ff5722] focus:ring-2 focus:ring-[#ff5722] focus:ring-offset-0 transition-colors"
+                        className="w-full border-2 border-[#0a0a0a] px-4 py-3 text-base focus:outline-none focus:border-[#c9521a] focus:ring-2 focus:ring-[#c9521a] focus:ring-offset-0 transition-colors"
                         placeholder="070-123 456 78"
                       />
                     </div>
@@ -141,7 +141,7 @@ export default function KontaktPage() {
                         id="arendetyp"
                         value={form.arendetyp}
                         onChange={(e) => setForm({ ...form, arendetyp: e.target.value })}
-                        className="w-full border-2 border-[#0a0a0a] px-4 py-3 text-base focus:outline-none focus:border-[#ff5722] focus:ring-2 focus:ring-[#ff5722] focus:ring-offset-0 transition-colors bg-white appearance-none"
+                        className="w-full border-2 border-[#0a0a0a] px-4 py-3 text-base focus:outline-none focus:border-[#c9521a] focus:ring-2 focus:ring-[#c9521a] focus:ring-offset-0 transition-colors bg-white appearance-none"
                       >
                         <option value="">Välj ärendetyp...</option>
                         {arendetyper.map((a) => (
@@ -163,7 +163,7 @@ export default function KontaktPage() {
                       rows={5}
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      className="w-full border-2 border-[#0a0a0a] px-4 py-3 text-base focus:outline-none focus:border-[#ff5722] focus:ring-2 focus:ring-[#ff5722] focus:ring-offset-0 transition-colors resize-none"
+                      className="w-full border-2 border-[#0a0a0a] px-4 py-3 text-base focus:outline-none focus:border-[#c9521a] focus:ring-2 focus:ring-[#c9521a] focus:ring-offset-0 transition-colors resize-none"
                       placeholder="Berätta kort om din situation. Ju mer du berättar, desto bättre kan vi förbereda oss inför samtalet."
                     />
                   </div>
@@ -178,7 +178,7 @@ export default function KontaktPage() {
                       autoComplete="off"
                       value={form.time}
                       onChange={(e) => setForm({ ...form, time: e.target.value })}
-                      className="w-full border-2 border-[#0a0a0a] px-4 py-3 text-base focus:outline-none focus:border-[#ff5722] focus:ring-2 focus:ring-[#ff5722] focus:ring-offset-0 transition-colors"
+                      className="w-full border-2 border-[#0a0a0a] px-4 py-3 text-base focus:outline-none focus:border-[#c9521a] focus:ring-2 focus:ring-[#c9521a] focus:ring-offset-0 transition-colors"
                       placeholder="T.ex. 'Tisdag förmiddag' eller 'Helst imorgon'"
                     />
                   </div>
@@ -229,7 +229,7 @@ export default function KontaktPage() {
                   </div>
                   <a
                     href="tel:0812345678"
-                    className="font-semibold text-[#ff5722] hover:underline"
+                    className="font-semibold text-[#c9521a] hover:underline"
                   >
                     08-123 456 78
                   </a>
@@ -240,7 +240,7 @@ export default function KontaktPage() {
                   </div>
                   <a
                     href="mailto:hej@hagmans.se"
-                    className="font-semibold text-[#ff5722] hover:underline"
+                    className="font-semibold text-[#c9521a] hover:underline"
                   >
                     hej@hagmans.se
                   </a>
