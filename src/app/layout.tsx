@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { DM_Serif_Display, Fira_Sans } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
+import "@/styles/globals.css";
+import { client } from "@/config/client";
+import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import CookieBanner from "@/components/layout/CookieBanner";
 
 const dmSerifDisplay = DM_Serif_Display({
   weight: "400",
@@ -19,18 +21,12 @@ const firaSans = Fira_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Hagmans Familjerättsbyrå",
-  description:
-    "Familjerätt utan krångel. Vi är advokaterna du faktiskt vågar ringa – proffsiga, raka och mänskliga.",
-  keywords: [
-    "familjerätt",
-    "advokat",
-    "skilsmässa",
-    "vårdnad",
-    "bodelning",
-    "testamente",
-    "stockholm",
-  ],
+  title: client.seo.title,
+  description: client.seo.description,
+  keywords: [...client.seo.keywords],
+  icons: {
+    icon: client.favicon,
+  },
 };
 
 export default function RootLayout({
@@ -44,9 +40,10 @@ export default function RootLayout({
       className={`h-full ${dmSerifDisplay.variable} ${firaSans.variable}`}
     >
       <body className={`min-h-full flex flex-col bg-white text-[#0a0a0a] ${firaSans.className}`}>
-        <Navbar />
+        <Header />
         <main id="main-content" className="flex-1">{children}</main>
         <Footer />
+        <CookieBanner />
       </body>
     </html>
   );

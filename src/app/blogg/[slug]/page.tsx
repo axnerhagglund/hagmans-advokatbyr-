@@ -2,19 +2,22 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import BrutalistButton from "@/components/ui/BrutalistButton";
 import BrutalistCard from "@/components/ui/BrutalistCard";
-import { bloggPosts } from "@/data/blogg";
+import { getAllPosts, getPostBySlug, getPostSlugs } from "@/sanity/queries";
+
+export const revalidate = 3600;
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return bloggPosts.map((post) => ({ slug: post.slug }));
+  const slugs = await getPostSlugs();
+  return slugs.map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
-  const post = bloggPosts.find((p) => p.slug === slug);
+  const post = await getPostBySlug(slug);
   if (!post) return {};
   return {
     title: `${post.title} – Hagmans`,
@@ -31,10 +34,7 @@ function renderContent(content: string) {
         </h3>
       );
     }
-    const rendered = para.replace(
-      /\*\*([^*]+)\*\*/g,
-      '<strong>$1</strong>'
-    );
+    const rendered = para.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
     return (
       <p
         key={i}
@@ -47,10 +47,11 @@ function renderContent(content: string) {
 
 export default async function BloggPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = bloggPosts.find((p) => p.slug === slug);
+  const post = await getPostBySlug(slug);
   if (!post) notFound();
 
-  const related = bloggPosts.filter((p) => p.id !== post.id).slice(0, 3);
+  const allPosts = await getAllPosts();
+  const related = allPosts.filter((p) => p._id !== post._id).slice(0, 3);
 
   return (
     <>
@@ -69,7 +70,7 @@ export default async function BloggPostPage({ params }: Props) {
               {post.category}
             </span>
             <span className="text-sm text-[#888]">
-              {post.date} · {post.readTime}
+              {new Date(post.publishedAt).toLocaleDateString("sv-SE", { year: "numeric", month: "long", day: "numeric" })} · {post.readTime}
             </span>
           </div>
 
@@ -82,14 +83,12 @@ export default async function BloggPostPage({ params }: Props) {
           </p>
 
           <div className="flex items-center gap-4">
-            <div
-              className="w-12 h-12 border-2 border-[#0a0a0a] flex items-center justify-center font-display text-lg bg-[#c9521a] text-white"
-            >
-              {post.author.split(" ").map((n) => n[0]).join("")}
+            <div className="w-12 h-12 border-2 border-[#0a0a0a] flex items-center justify-center font-display text-lg bg-[#c9521a] text-white">
+              {post.author.name.split(" ").map((n: string) => n[0]).join("")}
             </div>
             <div>
-              <div className="font-semibold text-sm">{post.author}</div>
-              <div className="text-xs text-[#888]">{post.authorTitle}</div>
+              <div className="font-semibold text-sm">{post.author.name}</div>
+              <div className="text-xs text-[#888]">{post.author.title}</div>
             </div>
           </div>
         </div>
@@ -124,15 +123,13 @@ export default async function BloggPostPage({ params }: Props) {
                 <h3 className="font-bold text-xs uppercase tracking-widest mb-4">
                   Skriven av
                 </h3>
-                <div className="flex items-start gap-3">
-                  <div
-                    className="w-12 h-12 border-2 border-[#0a0a0a] flex items-center justify-center font-display text-lg bg-[#c9521a] text-white flex-shrink-0"
-                  >
-                    {post.author.split(" ").map((n) => n[0]).join("")}
+                  <div className="flex items-start gap-3">
+                  <div className="w-12 h-12 border-2 border-[#0a0a0a] flex items-center justify-center font-display text-lg bg-[#c9521a] text-white flex-shrink-0">
+                    {post.author.name.split(" ").map((n: string) => n[0]).join("")}
                   </div>
                   <div>
-                    <div className="font-semibold text-sm">{post.author}</div>
-                    <div className="text-xs text-[#888]">{post.authorTitle}</div>
+                    <div className="font-semibold text-sm">{post.author.name}</div>
+                    <div className="text-xs text-[#888]">{post.author.title}</div>
                   </div>
                 </div>
                 <div className="mt-4">
@@ -169,7 +166,7 @@ export default async function BloggPostPage({ params }: Props) {
           <h2 className="font-display text-3xl mb-8">Fler artiklar</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {related.map((p) => (
-              <Link href={`/blogg/${p.slug}`} key={p.id} className="block">
+              <Link href={`/blogg/${p.slug.current}`} key={p._id} className="block">
                 <BrutalistCard className="h-full flex flex-col overflow-hidden" hoverable>
                   <div className="h-2 bg-[#c9521a]" />
                   <div className="p-6 flex flex-col flex-1">
@@ -180,7 +177,7 @@ export default async function BloggPostPage({ params }: Props) {
                       {p.title}
                     </h3>
                     <div className="text-xs text-[#888] pt-3 border-t border-gray-100">
-                      {p.author} · {p.date}
+                      {p.author.name} · {new Date(p.publishedAt).toLocaleDateString("sv-SE", { year: "numeric", month: "short", day: "numeric" })}
                     </div>
                   </div>
                 </BrutalistCard>

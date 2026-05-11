@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { FaqItem } from "@/data/faq";
+import type { SanityFaqItem } from "@/sanity/types";
 
 interface Props {
-  items: FaqItem[];
+  items: SanityFaqItem[];
 }
 
 export default function FaqAccordion({ items }: Props) {
@@ -13,13 +13,13 @@ export default function FaqAccordion({ items }: Props) {
   return (
     <div className="border border-[#d8d4cc]">
       {items.map((item, i) => {
-        const isOpen = open === item.id;
-        const answerId = `faq-answer-${item.id}`;
+        const isOpen = open === item._id;
+        const answerId = `faq-answer-${item._id}`;
         return (
-          <div key={item.id} className={i > 0 ? "border-t border-[#e5e0d8]" : ""}>
+          <div key={item._id} className={i > 0 ? "border-t border-[#e5e0d8]" : ""}>
             <button
               className="w-full flex items-center justify-between px-6 py-5 text-left font-semibold text-sm hover:bg-[#fafaf8] transition-colors gap-4"
-              onClick={() => setOpen(isOpen ? null : item.id)}
+              onClick={() => setOpen(isOpen ? null : item._id)}
               aria-expanded={isOpen}
               aria-controls={answerId}
             >

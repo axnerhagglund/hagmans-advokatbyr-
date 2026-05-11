@@ -1,9 +1,12 @@
 import BrutalistButton from "@/components/ui/BrutalistButton";
 import BrutalistCard from "@/components/ui/BrutalistCard";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { medarbetare } from "@/data/medarbetare";
+import { getAllTeamMembers } from "@/sanity/queries";
 
-export default function MedarbetarePage() {
+export const revalidate = 3600;
+
+export default async function MedarbetarePage() {
+  const medarbetare = await getAllTeamMembers();
   return (
     <>
       {/* ─── HERO ─── */}
@@ -29,7 +32,7 @@ export default function MedarbetarePage() {
         <div className="max-w-7xl mx-auto px-6 space-y-12">
           {medarbetare.map((m, i) => (
             <div
-              key={m.id}
+              key={m._id}
               className="grid grid-cols-1 lg:grid-cols-3 gap-0 border-2 border-[#0a0a0a]"
               style={{ boxShadow: "5px 5px 0 #0a0a0a" }}
             >
@@ -38,16 +41,16 @@ export default function MedarbetarePage() {
                 className="h-64 lg:h-auto flex flex-col items-center justify-center border-b-2 lg:border-b-0 lg:border-r-2 border-[#0a0a0a] p-8"
                 style={{
                   backgroundColor:
-                    m.color === "#ffeb3b"
+                    m.accentColor === "#ffeb3b"
                       ? "#ffeb3b"
-                      : m.color === "#0a0a0a"
+                      : m.accentColor === "#0a0a0a"
                       ? "#f0f0ee"
                       : "#fff0ec",
                 }}
               >
                 <span
                   className="font-display text-7xl mb-4"
-                  style={{ color: m.color === "#ffeb3b" ? "#0a0a0a" : m.color }}
+                  style={{ color: m.accentColor === "#ffeb3b" ? "#0a0a0a" : m.accentColor }}
                 >
                   {m.initials}
                 </span>
