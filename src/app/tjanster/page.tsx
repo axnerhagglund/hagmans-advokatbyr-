@@ -1,12 +1,26 @@
 import BrutalistButton from "@/components/ui/BrutalistButton";
 import BrutalistCard from "@/components/ui/BrutalistCard";
+import FaqAccordion from "@/components/ui/FaqAccordion";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import SectionHeader from "@/components/ui/SectionHeader";
+import {
+  fallbackTjansterServices,
+  tjansterFakeTestimonials,
+  tjansterPageFaqItems,
+} from "@/data/tjansterPageStatic";
 import { getAllServices } from "@/sanity/queries";
 
 export const revalidate = 3600;
 
 export default async function TjansterPage() {
-  const tjanster = await getAllServices();
+  const fromCms = await getAllServices();
+  const tjanster = fromCms.length > 0 ? fromCms : fallbackTjansterServices;
+
+  const featuredQuote =
+    tjansterFakeTestimonials.find((t) => t.variant === "featured") ??
+    tjansterFakeTestimonials[0];
+  const sideQuotes = tjansterFakeTestimonials.filter((t) => t !== featuredQuote);
+
   return (
     <>
       {/* ─── HERO ─── */}
@@ -26,15 +40,22 @@ export default async function TjansterPage() {
         </div>
       </section>
 
+      {fromCms.length === 0 && (
+        <div className="border-b-2 border-[#0a0a0a] bg-[#ffeb3b] py-4">
+          <p className="max-w-7xl mx-auto px-6 text-sm font-semibold text-[#0a0a0a]">
+            Demo-läge: ingen data i Sanity ännu — du ser Hagmans-standardtjänster. När CMS är fyllt hämtas innehållet automatiskt.
+          </p>
+        </div>
+      )}
+
       {/* ─── TJÄNSTER ─── */}
       <div className="max-w-7xl mx-auto px-6 py-16 space-y-16">
         {tjanster.map((t, i) => (
           <div
             key={t._id}
-            id={t._id}
+            id={String(t._id).replace(/^fallback-/, "")}
             className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start border-b-2 border-[#0a0a0a] pb-16 last:border-0 last:pb-0"
           >
-            {/* Left */}
             <div className={i % 2 === 1 ? "lg:order-2" : ""}>
               <div className="flex items-center gap-4 mb-6">
                 <div
@@ -87,7 +108,6 @@ export default async function TjansterPage() {
               </div>
             </div>
 
-            {/* Right */}
             <div className={i % 2 === 1 ? "lg:order-1" : ""}>
               <BrutalistCard
                 accent={t.color === "orange" ? "orange" : "yellow"}
@@ -121,6 +141,113 @@ export default async function TjansterPage() {
           </div>
         ))}
       </div>
+
+      {/* ─── REFERENSER (demo) ─── Editorial split, inte identiska kort-rutor */}
+      <section className="border-t-2 border-[#0a0a0a] bg-[#0a0a0a] text-white py-16 md:py-24 relative overflow-hidden">
+        <div
+          className="absolute top-8 right-[8%] font-display leading-none opacity-[0.07] pointer-events-none select-none text-white"
+          style={{ fontSize: "clamp(8rem, 22vw, 18rem)" }}
+          aria-hidden
+        >
+          &ldquo;
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <ScrollReveal direction="none">
+            <div className="flex flex-wrap items-end justify-between gap-6 mb-12 md:mb-16">
+              <div>
+                <span className="inline-block text-[0.65rem] font-bold tracking-[0.28em] uppercase text-[#ffeb3b] border border-[#ffeb3b] px-2.5 py-1 mb-5">
+                  Röster
+                </span>
+                <h2 className="font-display text-4xl md:text-6xl leading-[1.05] max-w-2xl">
+                  Det här säger människor som redan{" "}
+                  <span className="text-[#ffeb3b]">varit i kläm</span>.
+                </h2>
+              </div>
+              <p className="text-sm text-[#9a9a9a] max-w-xs leading-relaxed border-l-2 border-[#c9521a] pl-5">
+                Fiktiva omdömen för layout och ton — byt mot verifierbara citat när
+                ni kan publicera dem.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 lg:items-stretch">
+            <ScrollReveal
+              className="lg:col-span-7 flex flex-col"
+              delay={0.06}
+              direction="left"
+            >
+              <div
+                className="flex flex-col justify-between flex-1 border-2 border-[#2a2a2a] p-8 md:p-12 bg-[#141414]"
+                style={{ boxShadow: "8px 8px 0 #c9521a" }}
+              >
+                <p className="font-display text-2xl md:text-[1.85rem] leading-snug text-white mb-10">
+                  {featuredQuote.quote}
+                </p>
+                <div>
+                  <p className="font-semibold text-white tracking-wide">
+                    {featuredQuote.attribution}
+                  </p>
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#888] mt-2">
+                    {featuredQuote.detail}
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <div className="lg:col-span-5 flex flex-col gap-6">
+              {sideQuotes.map((item, idx) => (
+                <ScrollReveal
+                  key={item.attribution + item.detail}
+                  delay={0.08 + idx * 0.05}
+                  direction="up"
+                >
+                  <BrutalistCard
+                    accent={idx === 0 ? "yellow" : "none"}
+                    hoverable={false}
+                    className={`p-6 md:p-7 bg-[#fafaf8] text-[#0a0a0a] ${idx === 1 ? "-translate-x-0 lg:-translate-x-2" : ""}`}
+                  >
+                    <p className="font-display text-lg leading-snug mb-5">
+                      &ldquo;{item.quote}&rdquo;
+                    </p>
+                    <div className="text-xs font-bold uppercase tracking-[0.15em] text-[#c9521a]">
+                      {item.attribution}
+                    </div>
+                    <div className="text-[11px] text-[#767676] mt-1">{item.detail}</div>
+                  </BrutalistCard>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FAQ (tjänstenära) ─── */}
+      <section className="py-16 md:py-20 bg-[#fafaf8] border-b-2 border-[#0a0a0a]">
+        <div className="max-w-7xl mx-auto px-6">
+          <ScrollReveal>
+            <SectionHeader
+              tag="Frågor om tjänsterna"
+              title={
+                <>
+                  Kort sagt om{" "}
+                  <mark className="bg-[#ffeb3b] px-1">vad som gäller</mark>
+                </>
+              }
+              subtitle="Svaren nedan är till för tjänstesidan. Alla juridiska frågor finns också samlade under vanliga frågor."
+            />
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.08}>
+            <div className="max-w-3xl mb-10">
+              <FaqAccordion items={tjansterPageFaqItems} />
+            </div>
+            <BrutalistButton href="/faq" variant="outline">
+              Se alla vanliga frågor →
+            </BrutalistButton>
+          </ScrollReveal>
+        </div>
+      </section>
 
       {/* ─── CTA ─── */}
       <section className="bg-[#c9521a] border-t-2 border-[#0a0a0a] py-16">
