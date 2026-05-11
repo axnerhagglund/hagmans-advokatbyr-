@@ -1,9 +1,13 @@
 import BrutalistButton from "@/components/ui/BrutalistButton";
 import BrutalistCard from "@/components/ui/BrutalistCard";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { prisPackages, arvodesInfo } from "@/data/priser";
+import { arvodesInfo } from "@/data/priser";
+import { getAllPricingPackages } from "@/sanity/queries";
 
-export default function PriserPage() {
+export const revalidate = 3600;
+
+export default async function PriserPage() {
+  const prisPackages = await getAllPricingPackages();
   return (
     <>
       {/* ─── HERO ─── */}
@@ -52,7 +56,7 @@ export default function PriserPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {prisPackages.map((pkg) => (
               <BrutalistCard
-                key={pkg.id}
+                key={pkg._id}
                 accent={pkg.highlight ? "orange" : "none"}
                 hoverable={false}
                 className={`p-8 relative flex flex-col ${

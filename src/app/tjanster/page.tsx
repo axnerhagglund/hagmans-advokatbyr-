@@ -1,9 +1,12 @@
 import BrutalistButton from "@/components/ui/BrutalistButton";
 import BrutalistCard from "@/components/ui/BrutalistCard";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { tjanster } from "@/data/tjanster";
+import { getAllServices } from "@/sanity/queries";
 
-export default function TjansterPage() {
+export const revalidate = 3600;
+
+export default async function TjansterPage() {
+  const tjanster = await getAllServices();
   return (
     <>
       {/* ─── HERO ─── */}
@@ -27,8 +30,8 @@ export default function TjansterPage() {
       <div className="max-w-7xl mx-auto px-6 py-16 space-y-16">
         {tjanster.map((t, i) => (
           <div
-            key={t.id}
-            id={t.id}
+            key={t._id}
+            id={t._id}
             className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start border-b-2 border-[#0a0a0a] pb-16 last:border-0 last:pb-0"
           >
             {/* Left */}

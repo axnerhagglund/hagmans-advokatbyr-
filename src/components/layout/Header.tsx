@@ -14,7 +14,7 @@ const navLinks = [
   { href: "/blogg", label: "Blogg" },
 ];
 
-export default function Navbar() {
+export default function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 

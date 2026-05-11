@@ -2,11 +2,12 @@ import Link from "next/link";
 import BrutalistButton from "@/components/ui/BrutalistButton";
 import BrutalistCard from "@/components/ui/BrutalistCard";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { bloggPosts } from "@/data/blogg";
+import { getAllPosts } from "@/sanity/queries";
 
-const categories = Array.from(new Set(bloggPosts.map((p) => p.category)));
+export const revalidate = 3600;
 
-export default function BloggPage() {
+export default async function BloggPage() {
+  const bloggPosts = await getAllPosts();
   return (
     <>
       {/* ─── HERO ─── */}
@@ -31,45 +32,45 @@ export default function BloggPage() {
       {/* ─── FEATURED ─── */}
       <section className="py-12 border-b-2 border-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-6">
-          <Link href={`/blogg/${bloggPosts[0].slug}`} className="block">
-            <div
-              className="grid grid-cols-1 lg:grid-cols-2 border-2 border-[#0a0a0a] hover:shadow-[6px_6px_0_#0a0a0a] transition-all"
-              style={{ boxShadow: "4px 4px 0 #0a0a0a" }}
-            >
+          {bloggPosts.length > 0 && (
+            <Link href={`/blogg/${bloggPosts[0].slug.current}`} className="block">
               <div
-                className="h-64 lg:h-auto bg-[#ffeb3b] border-b-2 lg:border-b-0 lg:border-r-2 border-[#0a0a0a] flex items-center justify-center p-10"
+                className="grid grid-cols-1 lg:grid-cols-2 border-2 border-[#0a0a0a] hover:shadow-[6px_6px_0_#0a0a0a] transition-all"
+                style={{ boxShadow: "4px 4px 0 #0a0a0a" }}
               >
-                <div className="font-display text-8xl text-[#0a0a0a]/20">
-                  {bloggPosts[0].category.charAt(0)}
-                </div>
-              </div>
-              <div className="p-8 md:p-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="bg-[#c9521a] text-white text-xs font-bold uppercase tracking-widest px-3 py-1">
-                    Senaste
-                  </span>
-                  <span className="text-xs font-bold text-[#c9521a] uppercase tracking-widest">
-                    {bloggPosts[0].category}
-                  </span>
-                </div>
-                <h2 className="font-display text-3xl md:text-4xl leading-tight mb-4">
-                  {bloggPosts[0].title}
-                </h2>
-                <p className="text-[#6b6b6b] leading-relaxed mb-6">
-                  {bloggPosts[0].excerpt}
-                </p>
-                <div className="flex items-center justify-between text-sm">
-                  <div>
-                    <span className="font-semibold">{bloggPosts[0].author}</span>
-                    <span className="text-[#888]"> — {bloggPosts[0].authorTitle}</span>
+                <div className="h-64 lg:h-auto bg-[#ffeb3b] border-b-2 lg:border-b-0 lg:border-r-2 border-[#0a0a0a] flex items-center justify-center p-10">
+                  <div className="font-display text-8xl text-[#0a0a0a]/20">
+                    {bloggPosts[0].category.charAt(0)}
                   </div>
-                  <span className="text-[#888]">
-                    {bloggPosts[0].date} · {bloggPosts[0].readTime}
-                  </span>
+                </div>
+                <div className="p-8 md:p-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="bg-[#c9521a] text-white text-xs font-bold uppercase tracking-widest px-3 py-1">
+                      Senaste
+                    </span>
+                    <span className="text-xs font-bold text-[#c9521a] uppercase tracking-widest">
+                      {bloggPosts[0].category}
+                    </span>
+                  </div>
+                  <h2 className="font-display text-3xl md:text-4xl leading-tight mb-4">
+                    {bloggPosts[0].title}
+                  </h2>
+                  <p className="text-[#6b6b6b] leading-relaxed mb-6">
+                    {bloggPosts[0].excerpt}
+                  </p>
+                  <div className="flex items-center justify-between text-sm">
+                    <div>
+                      <span className="font-semibold">{bloggPosts[0].author.name}</span>
+                      <span className="text-[#888]"> — {bloggPosts[0].author.title}</span>
+                    </div>
+                    <span className="text-[#888]">
+                      {new Date(bloggPosts[0].publishedAt).toLocaleDateString("sv-SE", { year: "numeric", month: "long", day: "numeric" })} · {bloggPosts[0].readTime}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          )}
         </div>
       </section>
 
@@ -80,7 +81,7 @@ export default function BloggPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {bloggPosts.slice(1).map((post) => (
-              <Link href={`/blogg/${post.slug}`} key={post.id} className="block">
+              <Link href={`/blogg/${post.slug.current}`} key={post._id} className="block">
                 <BrutalistCard className="h-full flex flex-col overflow-hidden" hoverable>
                   <div className="p-6 flex flex-col flex-1">
                     <div className="flex items-center gap-2 mb-3">
@@ -98,9 +99,9 @@ export default function BloggPage() {
                     </p>
                     <div className="flex items-center justify-between text-xs text-[#888] pt-4 border-t border-[#e5e0d8]">
                       <span className="font-semibold text-[#0a0a0a]">
-                        {post.author}
+                        {post.author.name}
                       </span>
-                      <span>{post.date}</span>
+                      <span>{new Date(post.publishedAt).toLocaleDateString("sv-SE", { year: "numeric", month: "short", day: "numeric" })}</span>
                     </div>
                   </div>
                 </BrutalistCard>

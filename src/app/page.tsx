@@ -4,12 +4,21 @@ import BrutalistCard from "@/components/ui/BrutalistCard";
 import SectionHeader from "@/components/ui/SectionHeader";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { tjanster } from "@/data/tjanster";
-import { medarbetare } from "@/data/medarbetare";
-import { faqItems } from "@/data/faq";
-import { bloggPosts } from "@/data/blogg";
+import { getAllServices } from "@/sanity/queries";
+import { getAllTeamMembers } from "@/sanity/queries";
+import { getAllFaqItems } from "@/sanity/queries";
+import { getAllPosts } from "@/sanity/queries";
 
-export default function HomePage() {
+export const revalidate = 3600;
+
+export default async function HomePage() {
+  const [tjanster, medarbetare, faqItems, bloggPosts] = await Promise.all([
+    getAllServices(),
+    getAllTeamMembers(),
+    getAllFaqItems(),
+    getAllPosts(),
+  ]);
+
   const featuredFaq = faqItems.slice(0, 4);
   const featuredBlogg = bloggPosts.slice(0, 3);
 
@@ -145,7 +154,7 @@ export default function HomePage() {
 
           <div className="divide-y divide-[#e5e0d8]">
             {tjanster.slice(0, 4).map((t, i) => (
-              <ScrollReveal key={t.id} delay={i * 0.06}>
+              <ScrollReveal key={t._id} delay={i * 0.06}>
                 <Link
                   href="/tjanster"
                   className="group flex items-center gap-6 md:gap-10 py-6 hover:bg-[#fafaf8] -mx-3 px-3 transition-colors"
@@ -237,24 +246,28 @@ export default function HomePage() {
               <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-[#c9521a] border border-[#c9521a] px-3 py-1 mb-8">
                 Teamet
               </span>
-              <div className="flex items-start gap-5 mb-6">
-                <div
-                  className="w-16 h-16 flex-shrink-0 flex items-center justify-center font-display text-2xl"
-                  style={{ backgroundColor: "#fff0ec", color: "#c9521a" }}
-                >
-                  {medarbetare[0].initials}
-                </div>
-                <div>
-                  <h3 className="font-display text-2xl leading-tight">{medarbetare[0].name}</h3>
-                  <p className="text-xs text-[#c9521a] font-semibold uppercase tracking-widest mt-1">
-                    {medarbetare[0].title}
+              {medarbetare[0] && (
+                <>
+                  <div className="flex items-start gap-5 mb-6">
+                    <div
+                      className="w-16 h-16 flex-shrink-0 flex items-center justify-center font-display text-2xl"
+                      style={{ backgroundColor: "#fff0ec", color: "#c9521a" }}
+                    >
+                      {medarbetare[0].initials}
+                    </div>
+                    <div>
+                      <h3 className="font-display text-2xl leading-tight">{medarbetare[0].name}</h3>
+                      <p className="text-xs text-[#c9521a] font-semibold uppercase tracking-widest mt-1">
+                        {medarbetare[0].title}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-[#444] leading-relaxed mb-6">{medarbetare[0].bio}</p>
+                  <p className="text-sm text-[#888] italic pt-4 mt-4 border-t border-[#e5e0d8]">
+                    &ldquo;{medarbetare[0].personal}&rdquo;
                   </p>
-                </div>
-              </div>
-              <p className="text-[#444] leading-relaxed mb-6">{medarbetare[0].bio}</p>
-              <p className="text-sm text-[#888] italic pt-4 mt-4 border-t border-[#e5e0d8]">
-                &ldquo;{medarbetare[0].personal}&rdquo;
-              </p>
+                </>
+              )}
             </ScrollReveal>
 
             {/* Right: rest of team as clean list + CTA */}
@@ -264,12 +277,12 @@ export default function HomePage() {
               </p>
               <div className="divide-y divide-[#e5e0d8] mb-8">
                 {medarbetare.slice(1).map((m) => (
-                  <div key={m.id} className="flex items-center gap-4 py-4">
+                  <div key={m._id} className="flex items-center gap-4 py-4">
                     <div
                       className="w-9 h-9 flex-shrink-0 flex items-center justify-center font-display text-sm"
                       style={{
-                        backgroundColor: m.color === "#ffeb3b" ? "#ffeb3b" : "#f7f7f5",
-                        color: m.color === "#ffeb3b" ? "#0a0a0a" : m.color,
+                        backgroundColor: m.accentColor === "#ffeb3b" ? "#ffeb3b" : "#f7f7f5",
+                        color: m.accentColor === "#ffeb3b" ? "#0a0a0a" : m.accentColor,
                       }}
                     >
                       {m.initials}
@@ -343,48 +356,52 @@ export default function HomePage() {
             </BrutalistButton>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.1} className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
-            {/* Featured article – large */}
-            <Link
-              href={`/blogg/${featuredBlogg[0].slug}`}
-              className="lg:col-span-3 group block bg-[#fafaf8] border border-[#e5e0d8] p-8 md:p-10 flex flex-col hover:border-[#c9521a] transition-colors"
-            >
-              <span className="text-xs font-bold uppercase tracking-widest text-[#c9521a] mb-4 block">
-                {featuredBlogg[0].category}
-              </span>
-              <h3 className="font-display text-2xl md:text-3xl leading-tight mb-4 flex-1 group-hover:text-[#c9521a] transition-colors">
-                {featuredBlogg[0].title}
-              </h3>
-              <p className="text-[#6b6b6b] leading-relaxed mb-6">
-                {featuredBlogg[0].excerpt}
-              </p>
-              <div className="flex items-center justify-between text-xs text-[#767676] pt-5 border-t border-[#e5e0d8]">
-                <span className="font-semibold text-[#0a0a0a]">{featuredBlogg[0].author}</span>
-                <span>{featuredBlogg[0].date} · {featuredBlogg[0].readTime}</span>
-              </div>
-            </Link>
+          {featuredBlogg.length > 0 && (
+            <ScrollReveal delay={0.1} className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
+              {/* Featured article – large */}
+              <Link
+                href={`/blogg/${featuredBlogg[0].slug.current}`}
+                className="lg:col-span-3 group block bg-[#fafaf8] border border-[#e5e0d8] p-8 md:p-10 flex flex-col hover:border-[#c9521a] transition-colors"
+              >
+                <span className="text-xs font-bold uppercase tracking-widest text-[#c9521a] mb-4 block">
+                  {featuredBlogg[0].category}
+                </span>
+                <h3 className="font-display text-2xl md:text-3xl leading-tight mb-4 flex-1 group-hover:text-[#c9521a] transition-colors">
+                  {featuredBlogg[0].title}
+                </h3>
+                <p className="text-[#6b6b6b] leading-relaxed mb-6">
+                  {featuredBlogg[0].excerpt}
+                </p>
+                <div className="flex items-center justify-between text-xs text-[#767676] pt-5 border-t border-[#e5e0d8]">
+                  <span className="font-semibold text-[#0a0a0a]">{featuredBlogg[0].author.name}</span>
+                  <span>{new Date(featuredBlogg[0].publishedAt).toLocaleDateString("sv-SE", { year: "numeric", month: "short", day: "numeric" })} · {featuredBlogg[0].readTime}</span>
+                </div>
+              </Link>
 
-            {/* Two compact articles */}
-            <div className="lg:col-span-2 flex flex-col divide-y divide-[#e5e0d8] border border-[#e5e0d8]">
-              {featuredBlogg.slice(1).map((post) => (
-                <Link
-                  href={`/blogg/${post.slug}`}
-                  key={post.id}
-                  className="group flex flex-col p-6 flex-1 hover:bg-[#fafaf8] transition-colors"
-                >
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#c9521a] mb-2 block">
-                    {post.category}
-                  </span>
-                  <h3 className="font-display text-lg leading-tight mb-2 flex-1 group-hover:text-[#c9521a] transition-colors">
-                    {post.title}
-                  </h3>
-                  <div className="text-xs text-[#767676] mt-auto pt-3">
-                    {post.author} · {post.date} · {post.readTime}
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </ScrollReveal>
+              {/* Two compact articles */}
+              {featuredBlogg.length > 1 && (
+                <div className="lg:col-span-2 flex flex-col divide-y divide-[#e5e0d8] border border-[#e5e0d8]">
+                  {featuredBlogg.slice(1).map((post) => (
+                    <Link
+                      href={`/blogg/${post.slug.current}`}
+                      key={post._id}
+                      className="group flex flex-col p-6 flex-1 hover:bg-[#fafaf8] transition-colors"
+                    >
+                      <span className="text-xs font-bold uppercase tracking-widest text-[#c9521a] mb-2 block">
+                        {post.category}
+                      </span>
+                      <h3 className="font-display text-lg leading-tight mb-2 flex-1 group-hover:text-[#c9521a] transition-colors">
+                        {post.title}
+                      </h3>
+                      <div className="text-xs text-[#767676] mt-auto pt-3">
+                        {post.author.name} · {new Date(post.publishedAt).toLocaleDateString("sv-SE", { year: "numeric", month: "short", day: "numeric" })} · {post.readTime}
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </ScrollReveal>
+          )}
         </div>
       </section>
 
