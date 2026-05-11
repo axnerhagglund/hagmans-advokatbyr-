@@ -53,7 +53,7 @@ export default async function TjansterPage() {
         {tjanster.map((t, i) => (
           <div
             key={t._id}
-            id={t._id.replace(/^fallback-/, "")}
+            id={String(t._id).replace(/^fallback-/, "")}
             className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start border-b-2 border-[#0a0a0a] pb-16 last:border-0 last:pb-0"
           >
             <div className={i % 2 === 1 ? "lg:order-2" : ""}>
@@ -160,7 +160,7 @@ export default async function TjansterPage() {
                   Röster
                 </span>
                 <h2 className="font-display text-4xl md:text-6xl leading-[1.05] max-w-2xl">
-                  Det här säger människor som redan{' '}
+                  Det här säger människor som redan{" "}
                   <span className="text-[#ffeb3b]">varit i kläm</span>.
                 </h2>
               </div>
@@ -230,7 +230,7 @@ export default async function TjansterPage() {
               tag="Frågor om tjänsterna"
               title={
                 <>
-                  Kort sagt om{' '}
+                  Kort sagt om{" "}
                   <mark className="bg-[#ffeb3b] px-1">vad som gäller</mark>
                 </>
               }
